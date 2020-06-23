@@ -6,8 +6,11 @@ paginated_collection(versions, display_total: false, download_links: false) do
     end
     column(:event, :event_i18n)
     column(:item_type, :item_class_i18n)
-    column(:object) do |record|
-      record.item_instance ? attributes_table_for(record.item_instance, *record.item_column_names) : nil
+    # column(:object) do |record|
+    #   record.item_instance ? attributes_table_for(record.item_instance, *record.item_column_names) : nil
+    # end
+    column(:changes) do |record|
+      record.changeset
     end
     column(:created_at)
   end
