@@ -10,7 +10,11 @@ paginated_collection(versions, display_total: false, download_links: false) do
     #   record.item_instance ? attributes_table_for(record.item_instance, *record.item_column_names) : nil
     # end
     column(:changes) do |record|
-      record.changeset
+      attributes_table do
+        record.changeset.each do |attr, changed_values|
+          row attr { changed_values.join(' => ') }
+        end
+      end
     end
     column(:created_at)
   end
