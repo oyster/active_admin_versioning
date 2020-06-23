@@ -12,7 +12,7 @@ paginated_collection(versions, display_total: false, download_links: false) do
     column(:changes) do |record|
       attributes_table_for(record) do
         record.changeset.each do |attr, changed_values|
-          row attr { changed_values.join(' => ') }
+          row(attr) { changed_values.join(' => ') }
         end
       end
     end
